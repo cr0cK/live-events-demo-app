@@ -5,9 +5,9 @@ import type {
   RemoveTodoAction,
 } from './types';
 
-export const addTodo = (todo: { name: string }): AddTodoAction => ({
+export const addTodo = ({ name }: { name: string }): AddTodoAction => ({
   type: 'ADD_TODO',
-  todo,
+  name,
 });
 
 export const removeTodo = (id: number): RemoveTodoAction => ({

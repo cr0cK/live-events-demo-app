@@ -24,7 +24,7 @@ export default (state: State, action: TodoAction): State => {
 
       const newTodo = {
         id: nextId,
-        name: action.todo.name,
+        name: action.name,
       };
 
       return {
@@ -37,13 +37,15 @@ export default (state: State, action: TodoAction): State => {
     }
 
     case 'REMOVE_TODO': {
+      const id = action.id;
       return {
         ...state,
-        todos: state.todos.filter(todo => todo.id !== action.id),
+        todos: state.todos.filter(todo => todo.id !== id),
       };
     }
 
     default:
+      (action: empty);    // eslint-disable-line
       return initialState;
   }
 };

@@ -17,11 +17,8 @@ type PresenterProps = {
   removeTodo: Function,
 };
 
-export default class Presenter extends React.Component {
-  props: PresenterProps;
-
+export default class Presenter extends React.Component<PresenterProps> {
   deleteTodo = (id: number) => {
-    console.log('delete?');
     this.props.removeTodo(id);
   }
 

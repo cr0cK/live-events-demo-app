@@ -7,9 +7,7 @@ type LayoutProps = {
   children: any,
 };
 
-export default class Layout extends React.Component {
-  props: LayoutProps;
-
+export default class Layout extends React.Component<LayoutProps> {
   render() {
     return (
       <div>

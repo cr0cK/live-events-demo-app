@@ -5,21 +5,19 @@ export type Todo = {
   name: string,
 };
 
-export type AddTodoAction = {
+export type AddTodoAction = {|
   type: 'ADD_TODO',
-  todo: {
-    name: string,
-  }
-};
+  name: string,
+|};
 
-export type RemoveTodoAction = {
+export type RemoveTodoAction = {|
   type: 'REMOVE_TODO',
   id: number,
-};
+|};
 
 export type TodoAction =
-  AddTodoAction |
-  RemoveTodoAction;
+  | RemoveTodoAction
+  | AddTodoAction;
 
 export type State = {
   todos: Array<Todo>,

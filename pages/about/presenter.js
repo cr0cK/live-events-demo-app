@@ -6,7 +6,7 @@ import Router from 'next/router';
 import Layout from '../../layout';
 
 
-export default class Presenter extends React.Component {
+export default class Presenter extends React.Component<void> {
   render() {
     return (
       <Layout>
