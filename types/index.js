@@ -1,7 +1,7 @@
 // @flow
 
-import type { State as TodoState } from '../store/todo/types';
+import type { State as EventsState } from '../store/events/types';
 
 export type FullState = {
-  todos: TodoState,
+  todos: EventsState,
 };

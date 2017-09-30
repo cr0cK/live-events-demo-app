@@ -6,24 +6,22 @@ import { connect } from 'react-redux';
 
 import initStore from '../store';
 import {
-  addTodo,
-  removeTodo,
-} from '../store/todo/actions';
+  saveEvent,
+} from '../store/events/actions';
 
-import TodosPresenter from './todos/presenter';
+import EventsPresenter from '../components/events/Presenter';
 
 
 const mapStateToProps = (state) => ({
-  todos: state.todo.todos,
+  events: state.events.list,    // TODO use selector
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  addTodo: (todo) => dispatch(addTodo(todo)),
-  removeTodo: (id) => dispatch(removeTodo(id)),
+  saveEvent: (event) => dispatch(saveEvent(event)),
 });
 
 const Index = compose(
   connect(mapStateToProps, mapDispatchToProps),
-)(TodosPresenter);
+)(EventsPresenter);
 
 export default withRedux(initStore)(Index);
