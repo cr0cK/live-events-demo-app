@@ -1,29 +1,36 @@
 // @flow
 
-import withRedux from 'next-redux-wrapper';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 
-import initStore from '../store';
+import Decorate from '../hoc';
 import {
-  addTodo,
-  removeTodo,
-} from '../store/todo/actions';
+  dropLiveEvents,
+  saveLiveEvent,
+  saveEventInHistory,
+} from '../store/events/actions';
+import {
+  selectLiveEvents,
+} from '../store/events/selectors';
 
-import TodosPresenter from './todos/presenter';
+import Presenter, {
+  type PresenterStateProps,
+  type PresenterDispatchProps,
+} from '../components/Live';
 
 
-const mapStateToProps = (state) => ({
-  todos: state.todo.todos,
+const mapStateToProps = (state): PresenterStateProps => ({
+  events: selectLiveEvents(state),
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  addTodo: (todo) => dispatch(addTodo(todo)),
-  removeTodo: (id) => dispatch(removeTodo(id)),
+const mapDispatchToProps = (dispatch): PresenterDispatchProps => ({
+  dropLiveEvents: () => dispatch(dropLiveEvents()),
+  saveLiveEvent: (event) => dispatch(saveLiveEvent(event)),
+  saveEventInHistory: (event) => dispatch(saveEventInHistory(event)),
 });
 
 const Index = compose(
   connect(mapStateToProps, mapDispatchToProps),
-)(TodosPresenter);
+)(Presenter);
 
-export default withRedux(initStore)(Index);
+export default Decorate(Index);

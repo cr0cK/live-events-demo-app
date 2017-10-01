@@ -4,7 +4,7 @@ import { combineReducers, createStore, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunkMiddleware from 'redux-thunk';
 
-import todoReducer from './todo/reducer';
+import eventsReducer from './events/reducer';
 
 import type {
   FullState,
@@ -12,7 +12,7 @@ import type {
 
 
 const rootReducer = combineReducers({
-  todo: todoReducer,
+  events: eventsReducer,
 });
 
 const middlewares = [
