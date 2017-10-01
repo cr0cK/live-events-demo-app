@@ -11,6 +11,8 @@ type EventProps = {
   events: Array<Event>,
 };
 
+const getRowKey = (event: Event, i: number) => `${event.date}-${i}`;
+
 export default class EventsTable extends React.Component<EventProps> {
   columns = [{
     title: 'UserName',
@@ -43,6 +45,7 @@ export default class EventsTable extends React.Component<EventProps> {
       <Table
         columns={this.columns}
         dataSource={this.props.events}
+        rowKey={getRowKey}
       />
     );
   }
