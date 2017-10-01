@@ -18,8 +18,10 @@ app.prepare().then(() => {
       throw err;
     }
 
+    /* eslint-disable no-console */
     console.log(`> API is running on http://localhost:${config.api.port}`);
     console.log(`> App is running on http://localhost:${config.web.port}`);
     console.log(`> Proxy is running on http://localhost:${config.proxy.port}`);
+    /* eslint-enable no-console */
   });
 });

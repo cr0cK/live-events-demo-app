@@ -26,4 +26,5 @@ app.all('/*', proxy({
 
 app.listen(config.proxy.port);
 
+// eslint-disable-next-line no-console
 console.log(`> Proxy is listening on localhost:${config.proxy.port}`);
