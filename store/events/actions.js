@@ -4,6 +4,7 @@ import get from 'lodash/get';
 import axios from '../../libs/axios';
 import type {
   Event,
+  DropLiveEventsAction,
   SaveLiveEventAction,
   SaveHistoryEventsAction,
   SaveEventInHistoryActionCreator,
@@ -14,6 +15,10 @@ import type {
   ThunkAction,
 } from '../../types';
 
+
+export const dropLiveEvents = (): DropLiveEventsAction => ({
+  type: 'DROP_LIVE_EVENTS',
+});
 
 export const saveLiveEvent = (event: Event): SaveLiveEventAction => ({
   type: 'SAVE_LIVE_EVENT',

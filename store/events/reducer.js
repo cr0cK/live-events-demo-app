@@ -12,6 +12,13 @@ export const initialState: State = {
 
 export default (state: State, action: EventAction): State => {
   switch (action.type) {
+    case 'DROP_LIVE_EVENTS': {
+      return {
+        ...state,
+        live: [],
+      };
+    }
+
     case 'SAVE_LIVE_EVENT': {
       return {
         ...state,

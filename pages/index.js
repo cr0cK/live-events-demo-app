@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 
 import Decorate from '../hoc';
 import {
+  dropLiveEvents,
   saveLiveEvent,
   saveEventInHistory,
 } from '../store/events/actions';
@@ -23,6 +24,7 @@ const mapStateToProps = (state): PresenterStateProps => ({
 });
 
 const mapDispatchToProps = (dispatch): PresenterDispatchProps => ({
+  dropLiveEvents: () => dispatch(dropLiveEvents()),
   saveLiveEvent: (event) => dispatch(saveLiveEvent(event)),
   saveEventInHistory: (event) => dispatch(saveEventInHistory(event)),
 });

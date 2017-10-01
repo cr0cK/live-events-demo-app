@@ -11,6 +11,7 @@ import EventsTable from './EventsTable';
 
 import type {
   Event as TEvent,
+  DropLiveEventsActionCreator,
   SaveLiveEventActionCreator,
   SaveEventInHistoryActionCreator,
 } from '../../store/events/types';
@@ -21,6 +22,7 @@ export type PresenterStateProps = {
 };
 
 export type PresenterDispatchProps = {
+  dropLiveEvents: DropLiveEventsActionCreator<void>,
   saveLiveEvent: SaveLiveEventActionCreator<Promise<*>>,
   saveEventInHistory: SaveEventInHistoryActionCreator<Promise<*>>,
 };
@@ -49,10 +51,19 @@ export default class Presenter extends React.Component<PresenterProps> {
    * Unbind handlers.
    */
   componentWillUnmount() {
+    if (!this.evtSource) {
+      return;
+    }
+
+    this.evtSource.close();
+
     // SSE Polyfill does not provide a `removeEventListener` function
-    if (this.evtSource && typeof this.evtSource.removeEventListener === 'function') {
+    if (typeof this.evtSource.removeEventListener === 'function') {
       this.evtSource.removeEventListener('data', this.receiveData);
     }
+
+    // clean store
+    this.props.dropLiveEvents();
   }
 
   /**
@@ -82,12 +93,22 @@ export default class Presenter extends React.Component<PresenterProps> {
     })).reverse();
   }
 
+  renderContent() {
+    if (!this.props.events.length) {
+      return <p>Waiting for data...</p>;
+    }
+
+    return (
+      <EventsTable
+        events={this.getEvents()}
+      />
+    );
+  }
+
   render() {
     return (
       <Layout title="Live Events">
-        <EventsTable
-          events={this.getEvents()}
-        />
+        {this.renderContent()}
       </Layout>
     );
   }
