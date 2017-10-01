@@ -5,25 +5,30 @@ import { connect } from 'react-redux';
 
 import Decorate from '../hoc';
 import {
-  saveEvent,
+  saveLiveEvent,
+  saveEventInHistory,
 } from '../store/events/actions';
 import {
   selectLiveEvents,
 } from '../store/events/selectors';
 
-import EventsPresenter from '../components/Live';
+import Presenter, {
+  type PresenterStateProps,
+  type PresenterDispatchProps,
+} from '../components/Live';
 
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state): PresenterStateProps => ({
   events: selectLiveEvents(state),
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  saveEvent: (event) => dispatch(saveEvent(event)),
+const mapDispatchToProps = (dispatch): PresenterDispatchProps => ({
+  saveLiveEvent: (event) => dispatch(saveLiveEvent(event)),
+  saveEventInHistory: (event) => dispatch(saveEventInHistory(event)),
 });
 
 const Index = compose(
   connect(mapStateToProps, mapDispatchToProps),
-)(EventsPresenter);
+)(Presenter);
 
 export default Decorate(Index);

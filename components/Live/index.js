@@ -11,12 +11,23 @@ import EventsTable from './EventsTable';
 
 import type {
   Event as TEvent,
+  SaveLiveEventActionCreator,
+  SaveEventInHistoryActionCreator,
 } from '../../store/events/types';
 
-type PresenterProps = {
+
+export type PresenterStateProps = {
   events: Array<TEvent>,
-  saveEvent: Function,
 };
+
+export type PresenterDispatchProps = {
+  saveLiveEvent: SaveLiveEventActionCreator<Promise<*>>,
+  saveEventInHistory: SaveEventInHistoryActionCreator<Promise<*>>,
+};
+
+export type PresenterProps =
+  PresenterStateProps &
+  PresenterDispatchProps;
 
 export default class Presenter extends React.Component<PresenterProps> {
   evtSource: Object;
@@ -51,7 +62,8 @@ export default class Presenter extends React.Component<PresenterProps> {
   receiveData = (e: any) => {
     try {
       const event = JSON.parse(get(e, 'data', {}));
-      this.props.saveEvent(event);
+      this.props.saveLiveEvent(event);
+      this.props.saveEventInHistory(event);
     } catch (err) {
       // eslint-disable-next-line no-console
       console.log('Invalid data!', err);
@@ -72,9 +84,7 @@ export default class Presenter extends React.Component<PresenterProps> {
 
   render() {
     return (
-      <Layout>
-        <h2>Live Events</h2>
-
+      <Layout title="Live Events">
         <EventsTable
           events={this.getEvents()}
         />

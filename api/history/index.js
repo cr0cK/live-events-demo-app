@@ -6,8 +6,8 @@ const actions = {
 };
 
 const selectors = {};
-selectors.all = () => (state) => state.storage;
-selectors.last = () => (state) => state.storage[state.storage.length - 1];
+selectors.all = () => (state) => state.history;
+selectors.last = () => (state) => state.history[state.history.length - 1];
 
 const reducer = {
   [actions.get]: state => state,
@@ -28,9 +28,9 @@ const routes = {
 };
 
 module.exports = {
-  name: 'storage',
+  name: 'history',
   data: require('./data'),
   reducer,
-  endpoint: 'api/storage',
+  endpoint: 'api/history',
   routes,
 };

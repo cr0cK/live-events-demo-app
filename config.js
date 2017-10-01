@@ -5,6 +5,7 @@ module.exports = {
 
   api: {
     port: 5000,
+    baseURL: '/api',
   },
 
   web: {

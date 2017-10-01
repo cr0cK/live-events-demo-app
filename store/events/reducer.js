@@ -6,15 +6,23 @@ import type {
 } from './types';
 
 export const initialState: State = {
-  list: [],
+  live: [],
+  history: [],
 };
 
 export default (state: State, action: EventAction): State => {
   switch (action.type) {
-    case 'SAVE_EVENT': {
+    case 'SAVE_LIVE_EVENT': {
       return {
         ...state,
-        list: state.list.concat(action.event),
+        live: state.live.concat(action.event),
+      };
+    }
+
+    case 'SAVE_HISTORY_EVENTS': {
+      return {
+        ...state,
+        history: action.events,
       };
     }
 

@@ -10,6 +10,7 @@ import Navigation from './Navigation';
 
 
 type LayoutProps = {
+  title: string,
   children: any,
 };
 
@@ -29,13 +30,19 @@ export default class Layout extends React.Component<LayoutProps> {
           }
 
           div.main {
-            margin: 15px 0px;
+            margin: 8px 0px;
+          }
+
+          h1 {
+            margin: 8px 0 0 0;
           }
         `}</style>
 
         <LocaleProvider locale={enUS}>
           <div className="app">
             <Navigation />
+
+            <h1>{this.props.title}</h1>
 
             <div className="main">
               {this.props.children}

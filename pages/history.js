@@ -5,18 +5,22 @@ import { connect } from 'react-redux';
 
 import Decorate from '../hoc';
 import {
-  saveEvent,
+  getHistory,
 } from '../store/events/actions';
+
+import {
+  selectHistory,
+} from '../store/events/selectors';
 
 import HistoryPresenter from '../components/History';
 
 
 const mapStateToProps = (state) => ({
-  events: state.events.list,    // TODO use selector
+  events: selectHistory(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  saveEvent: (event) => dispatch(saveEvent(event)),
+  getHistory: () => dispatch(getHistory()),
 });
 
 const Index = compose(

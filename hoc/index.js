@@ -1,5 +1,9 @@
 // @flow
 
+/**
+ * Global app High Order Component.
+ */
+
 import type { Node } from 'react';
 import { compose } from 'redux';
 import withRedux from 'next-redux-wrapper';

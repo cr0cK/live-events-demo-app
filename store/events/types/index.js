@@ -1,6 +1,7 @@
 // @flow
 
 export type Event = {
+  date: string,
   email: string,
   ip: string,
   url: string,
@@ -8,19 +9,33 @@ export type Event = {
   userName: string,
 };
 
-export type SaveEventAction = {|
-  type: 'SAVE_EVENT',
+export type SaveLiveEventAction = {|
+  type: 'SAVE_LIVE_EVENT',
   event: Event
 |};
 
-// export type RemoveTodoAction = {|
-//   type: 'REMOVE_TODO',
-//   id: number,
-// |};
+export type SaveHistoryEventsAction = {|
+  type: 'SAVE_HISTORY_EVENTS',
+  events: Array<Event>,
+|};
+
+export type SaveLiveEventActionCreator<T> = {
+  (event: Event): T
+};
+
+export type SaveEventInHistoryActionCreator<T> = {
+  (event: Event): T
+};
+
+export type GetHistoryActionCreator<T> = {
+  (): T,
+};
 
 export type EventAction =
-  | SaveEventAction;
+  | SaveLiveEventAction
+  | SaveHistoryEventsAction;
 
 export type State = {
-  list: Array<Event>,
+  live: Array<Event>,
+  history: Array<Event>,
 };

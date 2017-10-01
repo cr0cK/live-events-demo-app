@@ -1,5 +1,6 @@
-const faker = require('faker');
 const isObject = require('lodash/isObject');
+const faker = require('faker');
+const moment = require('moment');
 
 
 // send data through the response
@@ -29,6 +30,7 @@ const generateData = () => ({
   url: faker.internet.url(),
   ip: faker.internet.ip(),
   userAgent: faker.internet.userAgent(),
+  date: moment.utc().format(),
 });
 
 // send data over SSE
