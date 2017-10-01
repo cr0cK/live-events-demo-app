@@ -47,7 +47,7 @@ export default class Navigation extends React.PureComponent<NavigationProps, Nav
           mode="horizontal"
         >
           <Menu.Item key="live">
-            <Icon type="wifi" />Live events
+            <Icon type="wifi" />Live Events
           </Menu.Item>
 
           <Menu.Item key="history">
