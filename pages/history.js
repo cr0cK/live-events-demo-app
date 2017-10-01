@@ -9,7 +9,7 @@ import {
   saveEvent,
 } from '../store/events/actions';
 
-import EventsPresenter from '../components/Events';
+import HistoryPresenter from '../components/History';
 
 
 const mapStateToProps = (state) => ({
@@ -22,6 +22,6 @@ const mapDispatchToProps = (dispatch) => ({
 
 const Index = compose(
   connect(mapStateToProps, mapDispatchToProps),
-)(EventsPresenter);
+)(HistoryPresenter);
 
 export default withRedux(initStore)(Index);

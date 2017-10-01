@@ -4,10 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start:api": "bouchon -d api -p 5000",
-    "start:proxy": "node ./proxy",
-    "start:web": "node ./server",
-    "dev": "run-p start:*",
+    "dev:build:ant-styles": "cp node_modules/antd/dist/antd.min.css static",
+    "dev:start:api": "bouchon -d api -p 5000",
+    "dev:start:proxy": "node ./proxy",
+    "dev:start:web": "node ./server",
+    "dev": "run-p dev:**",
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
@@ -22,6 +23,7 @@
   "license": "ISC",
   "homepage": "https://bitbucket.org/cr0cK/alsid#readme",
   "dependencies": {
+    "antd": "^2.13.4",
     "bouchon": "^0.4.0",
     "eventsource": "^1.0.5",
     "express": "^4.16.1",
@@ -41,6 +43,7 @@
   },
   "devDependencies": {
     "babel-eslint": "^8.0.1",
+    "babel-plugin-import": "^1.6.0",
     "babel-plugin-transform-flow-strip-types": "^6.22.0",
     "eslint": "^4.7.2",
     "eslint-config-airbnb": "^15.1.0",

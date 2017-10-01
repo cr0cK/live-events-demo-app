@@ -19,8 +19,10 @@ type PresenterProps = {
 };
 
 export default class Presenter extends React.Component<PresenterProps> {
+  evtSource: Object;
+
   /**
-   * Connect on the SSE endpoint.
+   * Connect on the SSE endpoint and listen on data event.
    */
   componentDidMount() {
     // $FlowFixMe
@@ -28,8 +30,18 @@ export default class Presenter extends React.Component<PresenterProps> {
       EventSource :
       EventSourcePolyfill;
 
-    const evtSource = new EventSourceConstructor('/api/events');
-    evtSource.addEventListener('data', this.receiveData, false);
+    this.evtSource = new EventSourceConstructor('/api/events');
+    this.evtSource.addEventListener('data', this.receiveData, false);
+  }
+
+  /**
+   * Unbind handlers.
+   */
+  componentWillUnmount() {
+    // SSE Polyfill does not provide a `removeEventListener` function
+    if (typeof this.evtSource.removeEventListener === 'function') {
+      this.evtSource.removeEventListener('data', this.receiveData);
+    }
   }
 
   /**
@@ -52,9 +64,10 @@ export default class Presenter extends React.Component<PresenterProps> {
         <h2>Events</h2>
 
         <ul>
-          {this.props.events.map(event => (
-            <Event event={event} />
-          ))}
+          {this.props.events.map((event, i) => {
+            const key = `event-${i}`;
+            return <Event key={key} event={event} />;
+          })}
         </ul>
       </Layout>
     );
