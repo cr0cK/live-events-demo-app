@@ -1,5 +1,5 @@
 {
-  "name": "alsid-demo-app",
+  "name": "live-events-demo-app",
   "version": "0.1.0",
   "description": "A sample React app with live events and storage.",
   "main": "index.js",
