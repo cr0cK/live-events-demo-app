@@ -1,8 +1,7 @@
 // @flow
 
-import React from 'react';
+import React, { type Node } from 'react';
 import Head from 'next/head';
-// import Router from 'next/router';
 import { LocaleProvider } from 'antd';
 import enUS from 'antd/lib/locale-provider/en_US';
 
@@ -11,7 +10,8 @@ import Navigation from './Navigation';
 
 type LayoutProps = {
   title: string,
-  children: any,
+  controls?: Array<Node>,
+  children: Node,
 };
 
 export default class Layout extends React.Component<LayoutProps> {
@@ -30,11 +30,18 @@ export default class Layout extends React.Component<LayoutProps> {
           }
 
           div.main {
+            position: relative;
             margin: 8px 0px;
           }
 
-          h1 {
-            margin: 8px 0 0 0;
+          div.controls {
+            position: absolute;
+            top: 0;
+            right: 0;
+          }
+
+          div.children {
+            margin: 10px 0;
           }
         `}</style>
 
@@ -42,10 +49,18 @@ export default class Layout extends React.Component<LayoutProps> {
           <div className="app">
             <Navigation />
 
-            <h1>{this.props.title}</h1>
-
             <div className="main">
-              {this.props.children}
+              <h1>{this.props.title}</h1>
+
+              {this.props.controls && (
+                <div className="controls">
+                  {this.props.controls}
+                </div>
+              )}
+
+              <div className="children">
+                {this.props.children}
+              </div>
             </div>
           </div>
         </LocaleProvider>

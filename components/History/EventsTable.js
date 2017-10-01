@@ -47,9 +47,6 @@ export default class EventsTable extends React.Component<EventProps> {
       <Table
         columns={this.columns}
         dataSource={this.props.events}
-        pagination={{
-          pageSize: 20,
-        }}
       />
     );
   }

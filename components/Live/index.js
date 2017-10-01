@@ -5,6 +5,7 @@
 import get from 'lodash/get';
 import React from 'react';
 import EventSourcePolyfill from 'eventsource';
+import { Button } from 'antd';
 
 import Layout from '../../layout';
 import EventsTable from './EventsTable';
@@ -93,6 +94,13 @@ export default class Presenter extends React.Component<PresenterProps> {
     })).reverse();
   }
 
+  /**
+   * Clean the list.
+   */
+  cleanListHandler = () => {
+    this.props.dropLiveEvents();
+  }
+
   renderContent() {
     if (!this.props.events.length) {
       return <p>Waiting for data...</p>;
@@ -107,7 +115,18 @@ export default class Presenter extends React.Component<PresenterProps> {
 
   render() {
     return (
-      <Layout title="Live Events">
+      <Layout
+        title="Live Events"
+        controls={[
+          <Button
+            key="cleanButton"
+            type="primary"
+            onClick={this.cleanListHandler}
+          >
+            Empty the list
+          </Button>,
+        ]}
+      >
         {this.renderContent()}
       </Layout>
     );
