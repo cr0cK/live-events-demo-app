@@ -1,7 +1,7 @@
 {
-  "name": "alsid",
-  "version": "1.0.0",
-  "description": "",
+  "name": "alsid-demo-app",
+  "version": "0.1.0",
+  "description": "A sample React app with live events and storage.",
   "main": "index.js",
   "scripts": {
     "dev:build:ant-styles": "cp node_modules/antd/dist/antd.min.css static",
