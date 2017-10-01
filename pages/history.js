@@ -1,10 +1,9 @@
 // @flow
 
-import withRedux from 'next-redux-wrapper';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 
-import initStore from '../store';
+import Decorate from '../hoc';
 import {
   saveEvent,
 } from '../store/events/actions';
@@ -24,4 +23,4 @@ const Index = compose(
   connect(mapStateToProps, mapDispatchToProps),
 )(HistoryPresenter);
 
-export default withRedux(initStore)(Index);
+export default Decorate(Index);

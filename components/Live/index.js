@@ -7,7 +7,7 @@ import React from 'react';
 import EventSourcePolyfill from 'eventsource';
 
 import Layout from '../../layout';
-import Event from './Event';
+import EventsTable from './EventsTable';
 
 import type {
   Event as TEvent,
@@ -39,7 +39,7 @@ export default class Presenter extends React.Component<PresenterProps> {
    */
   componentWillUnmount() {
     // SSE Polyfill does not provide a `removeEventListener` function
-    if (typeof this.evtSource.removeEventListener === 'function') {
+    if (this.evtSource && typeof this.evtSource.removeEventListener === 'function') {
       this.evtSource.removeEventListener('data', this.receiveData);
     }
   }
@@ -58,17 +58,26 @@ export default class Presenter extends React.Component<PresenterProps> {
     }
   }
 
+  /**
+   * Add an uniq key for each event and reverse the array to display
+   * the last event at the top of the table.
+   */
+  getEvents() {
+    return this.props.events.map((event) => ({
+      // create a pseudo uniq index
+      key: `event-${event.userName}-${event.email}`,
+      ...event,
+    })).reverse();
+  }
+
   render() {
     return (
       <Layout>
-        <h2>Events</h2>
+        <h2>Live Events</h2>
 
-        <ul>
-          {this.props.events.map((event, i) => {
-            const key = `event-${i}`;
-            return <Event key={key} event={event} />;
-          })}
-        </ul>
+        <EventsTable
+          events={this.getEvents()}
+        />
       </Layout>
     );
   }

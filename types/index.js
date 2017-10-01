@@ -3,5 +3,5 @@
 import type { State as EventsState } from '../store/events/types';
 
 export type FullState = {
-  todos: EventsState,
+  events: EventsState,
 };

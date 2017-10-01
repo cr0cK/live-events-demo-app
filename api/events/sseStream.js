@@ -45,7 +45,7 @@ const streamResponse = () => (req, res) => {
   // send data every second
   const dataInterval = setInterval(() => {
     writeRes(res, 'data', generateData());
-  }, 1000);
+  }, 2000);
 
   // When the request is closed by the client, stop tick interval
   req.on('close', () => {

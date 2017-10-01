@@ -1,19 +1,21 @@
 // @flow
 
-import withRedux from 'next-redux-wrapper';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 
-import initStore from '../store';
+import Decorate from '../hoc';
 import {
   saveEvent,
 } from '../store/events/actions';
+import {
+  selectLiveEvents,
+} from '../store/events/selectors';
 
-import EventsPresenter from '../components/Events';
+import EventsPresenter from '../components/Live';
 
 
 const mapStateToProps = (state) => ({
-  events: state.events.list,    // TODO use selector
+  events: selectLiveEvents(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -24,4 +26,4 @@ const Index = compose(
   connect(mapStateToProps, mapDispatchToProps),
 )(EventsPresenter);
 
-export default withRedux(initStore)(Index);
+export default Decorate(Index);

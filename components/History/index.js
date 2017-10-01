@@ -1,7 +1,6 @@
 // @flow
 
 import React from 'react';
-// import Router from 'next/router';
 // import { Menu, Icon } from 'antd';
 
 import Layout from '../../layout';
