@@ -4,10 +4,15 @@ module.exports = {
     "plugin:flowtype/recommended"
   ],
 
+  "env": {
+    "jest/globals": true
+  },
+
   "parser": "babel-eslint",
 
   "plugins": [
-    "flowtype"
+    "flowtype",
+    "jest"
   ],
 
   "rules": {
@@ -25,6 +30,11 @@ module.exports = {
       ]
     }],
 
-    "flowtype/generic-spacing": 0
+    "flowtype/generic-spacing": 0,
+
+    "jest/no-disabled-tests": "warn",
+    "jest/no-focused-tests": "error",
+    "jest/no-identical-title": "error",
+    "jest/valid-expect": "error"
   }
 };
