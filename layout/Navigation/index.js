@@ -53,6 +53,10 @@ export default class Navigation extends React.PureComponent<NavigationProps, Nav
           <Menu.Item key="history">
             <Icon type="bars" />History
           </Menu.Item>
+
+          <Menu.Item key="bar-chart">
+            <Icon type="bars-chart" />Bar Chart
+          </Menu.Item>
         </Menu>
       </div>
     );
